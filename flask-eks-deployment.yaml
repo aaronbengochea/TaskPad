@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: flask-app
-        image: aaronbengo/cca2:v5
+        image: aaronbengo/cca2:v7
         ports:
         - containerPort: 3000
         env:
@@ -34,12 +34,12 @@ spec:
             path: /health # Uses HTTP get to check health status of app
             port: 3000
           initialDelaySeconds: 10 # Performs the first check after 10s have passed from container creation
-          periodSeconds: 60 # Checks every 10 seconds
+          periodSeconds: 3600 # Checks every X seconds
           failureThreshold: 3 # Amount of consecutive failures before k8 restarts the pod
         readinessProbe:
           httpGet:
             path: /health # Uses HTTP get to check health status of app
             port: 3000
           initialDelaySeconds: 5 # Performs the first check after 5s have passed from container creation
-          periodSeconds: 60 # Checks every 5 seconds
+          periodSeconds: 3600 # Checks every X seconds
           failureThreshold: 2 # Amount of consecutive failures before k8 restarts the pod
