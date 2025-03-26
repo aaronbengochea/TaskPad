@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: flask-app-deployment
+  namespace: todo-k8
 spec:
   replicas: 2
   selector:
@@ -14,7 +15,7 @@ spec:
     spec:
       containers:
       - name: flask-app
-        image: aaronbengo/cca2:latest
+        image: aaronbengo/todo-k8:latest
         ports:
         - containerPort: 3000
         env:
