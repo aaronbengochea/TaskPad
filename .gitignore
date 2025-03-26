@@ -1,5 +1,12 @@
 venv/
-__pycache__
+
+__pycache__/
+
 hidden/
+
+mongo_data/
+
 minikube-darwin-arm64
+
 .DS_Store
+

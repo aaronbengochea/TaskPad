@@ -17,6 +17,10 @@ EXPOSE 3000
 
 # Define environment variable for Flask
 ENV FLASK_APP=app.py
+ENV FLASK_ENV=production
+ENV FLASK_PORT=3000
+ENV FLASK_HOST=0.0.0.0
+
 
 # Run the Flask application
-CMD ["flask", "run", "--host=0.0.0.0", "--port=3000"]
+CMD ["python", "app.py"]

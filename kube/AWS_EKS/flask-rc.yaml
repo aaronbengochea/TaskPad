@@ -3,7 +3,7 @@ kind: ReplicationController
 metadata:
   name: flask-app-rc
 spec:
-  replicas: 0  # Specify the desired number of replicas
+  replicas: 2  # Specify the desired number of replicas
   selector:
     app: flask-app
   template:

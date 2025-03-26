@@ -19,16 +19,18 @@ spec:
     spec:
       containers:
       - name: flask-app
-        image: aaronbengo/cca2:v7
+        image: aaronbengo/cca2:latest
         ports:
         - containerPort: 3000
         env:
-        - name: FLASK_ENV
-          value: "development"
-        - name: MONGO_URI
-          value: "mongodb://mongo:27017/todo_db"
-        - name: PORT
-          value: "3000"
+        - name: MONGO_HOST
+          value: "mongo"
+        - name: MONGO_PORT
+          value: "27017"
+        - name: MONGO_DB
+          value: "cca2"
+        - name: MONGO_COLLECTION
+          value: "todo"
         livenessProbe:
           httpGet:
             path: /health # Uses HTTP get to check health status of app

@@ -1,0 +1,33 @@
+alertmanager:
+  config:
+    global:
+      resolve_timeout: 5m
+    route:
+      receiver: "null"
+      group_by: ["alertname"]
+      routes:
+        - matchers:
+            - alertname = "Watchdog"
+          receiver: "slack"
+        - matchers:
+            - alertname = "PodDeletionDetectedForFlaskDeployment"
+          receiver: "slack"
+        - matchers:
+            - alertname = "PodCrashLooping"
+          receiver: "slack"
+        - matchers:
+            - alertname = "DeploymentHasTooFewReplicas"
+          receiver: "slack"
+    receivers:
+      - name: "null"
+      - name: "slack"
+        slack_configs:
+          - api_url: "https://hooks.slack.com/services/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"
+            channel: "#test"
+            send_resolved: true
+            title: "[{{ .Status | toUpper }}] Alert: {{ .CommonLabels.alertname }}"
+            text: |
+              {{ range .Alerts }}
+              *Summary:* {{ .Annotations.summary }}
+              *Description:* {{ .Annotations.description }}
+              {{ end }}

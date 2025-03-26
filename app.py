@@ -4,10 +4,17 @@ from bson.objectid import ObjectId # For ObjectId to work
 from bson.errors import InvalidId # For catching InvalidId exception for ObjectId
 import os
 
-MONGO_URI = os.environ.get('MONGO_URI', 'mongodb://mongo:27017/todo_db')
-client = MongoClient(MONGO_URI)
-db = client.camp2016    #Select the database
-todos = db.todo #Select the collection
+
+MONGO_HOST = os.environ.get('MONGO_HOST', 'localhost')
+MONGO_PORT = int(os.environ.get('MONGO_PORT', '27017'))
+MONGO_DB = os.environ.get('MONGO_DB', 'cca2')
+MONGO_COLLECTION = os.environ.get('MONGO_COLLECTION', 'todo')
+
+
+client = MongoClient(MONGO_HOST, MONGO_PORT)
+db = client[MONGO_DB]    #Select the database
+todos = db.MONGO_COLLECTION #Select the collection
+
 
 app = Flask(__name__)
 title = "TODO with Flask"
@@ -106,10 +113,11 @@ def about():
 	return render_template('credits.html',t=title,h=heading)
 
 if __name__ == "__main__":
-	env = os.environ.get('FLASK_ENV', 'development')
-	port = int(os.environ.get('PORT', 3000))
-	debug = False if env == 'production' else True
-	#app.run(debug=True)
-	app.run(port=3000)
-	#app.run(port=port, debug=debug)
+
+	flask_env = os.environ.get('FLASK_ENV', 'development')
+	flask_host = os.environ.get('FLASK_HOST', '0.0.0.0')
+	flask_port = int(os.environ.get('FLASK_PORT', '3000'))
+	flask_debug = False if flask_env == 'production' else True
+
+	app.run(host=flask_host, port=flask_port, debug=flask_debug)
 	# Careful with the debug mode..
