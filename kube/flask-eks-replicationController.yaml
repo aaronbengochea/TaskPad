@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: taskpad-rc
+  namespace: taskpad
+  labels:
+    app: taskpad-rc
+spec:
+  replicas: 5  # Specify the desired number of replicas
+  selector:
+    app: taskpad
+  template:
+    metadata:
+      labels:
+        app: taskpad
+    spec:
+      containers:
+      - name: taskpad
+        image: aaronbengo/taskpad:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: MONGO_HOST
+          value: "mongo-service"
+        - name: MONGO_PORT
+          value: "27017"
+        - name: MONGO_DB
+          value: "cca2"
+        - name: MONGO_COLLECTION
+          value: "todo"

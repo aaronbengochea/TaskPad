@@ -1,14 +1,13 @@
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  name: custom-alerts
+  name: flask-prometheus-rules
   namespace: monitoring
   labels:
-    release: prometheus    # This label matches the ruleSelector of your Prometheus instance.
-    role: alert-rules      # Optionally, you can keep additional labels if desired.
+    release: prometheus                 # This label matches the ruleSelector of prometheus-stack from helm.
 spec:
   groups:
-  - name: alerts
+  - name: flask-custom-probe
     rules:
     - alert: PodDeletionDetectedForFlaskDeployment
       expr: kube_deployment_status_replicas_available{deployment="flask-app-deployment", namespace="default"} 
@@ -19,6 +18,7 @@ spec:
       annotations:
         summary: "Pod deletion detected for deployment {{ $labels.deployment }}"
         description: "The deployment {{ $labels.deployment }} is missing pods: desired replicas are less than available replicas."
+    
     - alert: PodCrashLooping
       expr: kube_pod_container_status_restarts_total{namespace="default", container="flask-app"} > 1
       for: 2m
@@ -27,6 +27,7 @@ spec:
       annotations:
         summary: "Pod {{ $labels.pod }} in namespace {{ $labels.namespace }} is crash looping"
         description: "The pod has restarted more than 1 time in the last 2 minutes."
+    
     - alert: DeploymentHasTooFewReplicas
       expr: kube_deployment_status_replicas_unavailable{deployment="flask-app-deployment", namespace="default"} > 0
       for: 2m
