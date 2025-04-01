@@ -4,6 +4,7 @@ metadata:
   name: mongo-pvc
   namespace: taskpad
 spec:
+  storageClassName: gp2
   accessModes:
     - ReadWriteOnce
   resources:
