@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: flask-service
+  namespace: taskpad
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
     service.beta.kubernetes.io/aws-load-balancer-subnets: subnet-0253002b42154287d, subnet-016945e420b94d6ab, subnet-04e7480e32a20790a, subnet-09bc6233e1f627a07, subnet-04c913f0bad395ab3, subnet-087f47c51a314f2b6
