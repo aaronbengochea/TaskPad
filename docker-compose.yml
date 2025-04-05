@@ -3,7 +3,7 @@ services:
     build: .
     image: aaronbengo/cca2:latest
     ports:
-      - "3000:3000"
+      - "4000:4000"
     restart: always
     depends_on:
       - mongo

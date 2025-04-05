@@ -13,12 +13,12 @@ RUN pip install --no-cache-dir --upgrade pip && \
 
 
 # Expose the port that your Flask app runs on 
-EXPOSE 3000
+EXPOSE 4000
 
 # Define environment variable for Flask
 ENV FLASK_APP=app.py
 ENV FLASK_ENV=production
-ENV FLASK_PORT=3000
+ENV FLASK_PORT=4000
 ENV FLASK_HOST=0.0.0.0
 
 

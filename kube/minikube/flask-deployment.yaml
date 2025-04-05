@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: flask-app-deployment
+  name: flask-deployment
   namespace: taskpad
 spec:
   replicas: 2
@@ -17,7 +17,7 @@ spec:
       - name: flask-app
         image: aaronbengo/taskpad:latest
         ports:
-        - containerPort: 3000
+        - containerPort: 4000
         env:
         - name: MONGO_HOST
           value: "mongo"

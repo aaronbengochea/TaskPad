@@ -11,5 +11,5 @@ spec:
   selector:
     app: flask-app
   ports:
-  - port: 3000          # Service port
-    targetPort: 3000    # Container port
+  - port: 4000          # Service port
+    targetPort: 4000    # Container port

@@ -6,7 +6,7 @@ metadata:
   labels:
     app: taskpad-rc
 spec:
-  replicas: 5  # Specify the desired number of replicas
+  replicas: 2  # Specify the desired number of replicas
   selector:
     app: taskpad
   template:
@@ -18,7 +18,7 @@ spec:
       - name: taskpad
         image: aaronbengo/taskpad:latest
         ports:
-        - containerPort: 3000
+        - containerPort: 4000
         env:
         - name: MONGO_HOST
           value: "mongo-service"

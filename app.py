@@ -116,7 +116,7 @@ if __name__ == "__main__":
 
 	flask_env = os.environ.get('FLASK_ENV', 'development')
 	flask_host = os.environ.get('FLASK_HOST', '0.0.0.0')
-	flask_port = int(os.environ.get('FLASK_PORT', '3000'))
+	flask_port = int(os.environ.get('FLASK_PORT', '4000'))
 	flask_debug = False if flask_env == 'production' else True
 
 	app.run(host=flask_host, port=flask_port, debug=flask_debug)
